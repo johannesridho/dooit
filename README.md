@@ -23,6 +23,9 @@ Dooit is a play on words for _Duit_, which means money in Bahasa. Our goal in th
 - [BNI - Bank Negara Indonesia](http://www.ptbni.com.sg/?GPID=64)
 - [Money changers](https://cashchanger.co/singapore/sgd-to-myr?val=1&valtype=have)
 
-## Project Timeline
+## How to Run
+Run these commands:
+1. yarn
+2. yarn build
+3. yarn start
 
-- TODO
