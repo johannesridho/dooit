@@ -33,6 +33,10 @@ class PriceScraperChannel extends ApplicationChannel {
       return Response.ok({"key": "value"});
     });
 
+    router.route("/hello").linkFunction((request) async {
+      return Response.ok("world");
+    });
+
     return router;
   }
 }
