@@ -8,4 +8,4 @@ export 'dart:io';
 
 export 'package:aqueduct/aqueduct.dart';
 
-export 'channel.dart';
+export 'channel.dart' show PriceScraperChannel;
