@@ -1,3 +1,7 @@
+import 'dart:convert';
+
+import 'package:http/http.dart' as http;
+
 import 'price_scraper.dart';
 
 /// This type initializes an application.
@@ -35,6 +39,16 @@ class PriceScraperChannel extends ApplicationChannel {
 
     router.route("/hello").linkFunction((request) async {
       return Response.ok("world");
+    });
+
+    router.route("/get-forex").linkFunction((request) async {
+      const url = "https://api.ocbc.com:8243/Forex/1.1";
+
+      final request = await http.get(url, headers: {
+        "Authorization": "Bearer 8f9e7f99f5bd9c8f0ea50e67fe04ce1f"
+      });
+
+      return Response.ok(jsonDecode(request.body));
     });
 
     return router;
