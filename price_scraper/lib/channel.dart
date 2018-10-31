@@ -29,6 +29,7 @@ class PriceScraperChannel extends ApplicationChannel {
   /// This method is invoked after [prepare].
   @override
   Controller get entryPoint {
+    final config = APIConfiguration(options.configurationFilePath);
     final router = Router();
 
     // Prefer to use `link` instead of `linkFunction`.
@@ -44,13 +45,20 @@ class PriceScraperChannel extends ApplicationChannel {
     router.route("/get-forex").linkFunction((request) async {
       const url = "https://api.ocbc.com:8243/Forex/1.1";
 
-      final request = await http.get(url, headers: {
-        "Authorization": "Bearer 8f9e7f99f5bd9c8f0ea50e67fe04ce1f"
-      });
+      final request = await http.get(url,
+          headers: {"Authorization": "Bearer ${config.ocbcAccessToken}"});
 
       return Response.ok(jsonDecode(request.body));
     });
 
     return router;
   }
+}
+
+class APIConfiguration extends Configuration {
+  APIConfiguration(String path) : super.fromFile(File(path));
+
+  String ocbcConsumerKey;
+  String ocbcConsumerSecret;
+  String ocbcAccessToken;
 }
